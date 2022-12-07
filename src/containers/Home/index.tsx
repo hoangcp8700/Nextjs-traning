@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
 
-import Icon, { iconList, IconName } from "@/components/atoms/Icon";
+import Icon, { IconName } from "@/components/atoms/Icon";
 import NextImage from "@/components/atoms/Image";
 import SEO from "@/components/common/SEO";
 import Link from "@/components/atoms/Link";
+import ICON_LISTS from "@/components/atoms/Icon/constants";
 
 import styles from "./index.module.css";
 
 export interface HomeContainerProps {}
 
-const listIcon = Object.keys(iconList).map((item) => item as IconName);
+const listIcon = Object.keys(ICON_LISTS).map((item) => item as IconName);
 
 const Home: NextPage<HomeContainerProps> = () => (
   <div className={styles.container}>
@@ -27,7 +28,7 @@ const Home: NextPage<HomeContainerProps> = () => (
       </h1>
       {listIcon.map((item, index) => (
         <div key={`icon-${index.toString()}`} style={{ marginLeft: 7 }}>
-          <Icon iconName={item} size='32' isButton={index > 2} />
+          <Icon iconName={item} size={32} />
         </div>
       ))}
 

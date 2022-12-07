@@ -1,18 +1,27 @@
-import React from "react";
+import clsx from "clsx";
+import React, { useMemo } from "react";
 
 interface TextProps {
   type?: "p" | "span" | "div";
   content?: string;
   children?: React.ReactNode;
+  className?: string;
 }
 
-const Text: React.FC<TextProps> = ({ type = "p", content, children }) => {
+const Text: React.FC<TextProps> = ({ type = "p", content, children, className }) => {
   const Element = type;
+  const styleDefault = useMemo(() => "m-0 duration-300 ease", []);
+
   return content ? (
-    <Element dangerouslySetInnerHTML={{ __html: content }} />
+    <Element
+      className={clsx(styleDefault, className)}
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
   ) : (
-    <Element>{children}</Element>
+    <Element className={clsx(styleDefault, className)}>{children}</Element>
   );
 };
+
+Text.defaultProps = {};
 
 export default Text;

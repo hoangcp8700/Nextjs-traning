@@ -1,54 +1,32 @@
-import React from "react";
+import React, { useMemo } from "react";
+import styled from "@emotion/styled";
 
-import ArrowUp from "@/assets/icons/ic_arrow_up.svg";
-import Close from "@/assets/icons/ic_close.svg";
-import Loading from "@/assets/icons/ic_loading.svg";
-import Search from "@/assets/icons/ic_search.svg";
+import ICON_LISTS from "./constants";
 
-import Button from "../Button";
-
-export const iconList = {
-  search: Search,
-  loading: Loading,
-  close: Close,
-  arrowUp: ArrowUp,
-};
-
-export type IconSize =
-  | "10"
-  | "14"
-  | "16"
-  | "18"
-  | "20"
-  | "24"
-  | "28"
-  | "32"
-  | "36"
-  | "40"
-  | "64"
-  | "72"
-  | "80";
-
-export interface IconProps {
+interface IconStyleProps {
+  size?: number;
+}
+export interface IconProps extends IconStyleProps {
   iconName: IconName;
-  size?: IconSize;
-  isButton?: boolean;
+  className?: string;
 }
 
-export type IconName = keyof typeof iconList;
+export type IconName = keyof typeof ICON_LISTS;
 
-const Icon: React.FC<IconProps> = ({ iconName, size = "24", isButton }) => {
-  const Component = iconList[iconName];
+const Icon: React.FC<IconProps> = ({ iconName, size = 24, className }) => {
+  const Component = useMemo(() => ICON_LISTS[iconName], [iconName]);
+
+  const IconWrapper = styled(Component)<IconStyleProps>(
+    (props) =>
+      props?.size && {
+        fontSize: props?.size,
+        width: props?.size,
+        height: props?.size,
+      },
+  );
   return (
-    <span>
-      {!isButton ? (
-        <Component style={{ fontSize: size, width: size, height: size }} />
-      ) : (
-        <Button>
-          <Component style={{ fontSize: size, width: size, height: size }} />
-        </Button>
-      )}
-    </span>
+    <IconWrapper className={className} style={{ fontSize: size, width: size, height: size }} />
   );
 };
+
 export default Icon;

@@ -38,6 +38,8 @@ module.exports = {
         h2: { fontSize: theme("fontSize.2xl") },
         h3: { fontSize: theme("fontSize.xl") },
         h4: { fontSize: theme("fontSize.lg") },
+        p: { fontSize: theme("fontSize.base") },
+        span: { fontSize: theme("fontSize.sm") },
       });
 
       // registering new static utility styles
