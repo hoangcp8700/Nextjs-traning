@@ -25,13 +25,6 @@ class MyDocument extends Document {
         <Head>
           <meta charSet='utf-8' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
-          <link
-            rel='preload'
-            href='/fonts/inter-var-latin.woff2'
-            as='font'
-            type='font/woff2'
-            crossOrigin='anonymous'
-          />
         </Head>
         <body>
           <Main />
